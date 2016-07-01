@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :tweets
   get 'profile' => 'profile#index'
-  post 'profile' => 'profile#update'
+  patch 'profile' => 'profile#update'
 
   root 'home#index'
   devise_for :users
