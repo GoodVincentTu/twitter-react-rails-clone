@@ -21,7 +21,9 @@
   "homepage": "https://github.com/GoodVincentTu/twitter-react-rails-clone#readme",
   "dependencies": {
     "babel-core": "^6.10.4",
-    "babel-loader": "^6.2.4"
+    "babel-loader": "^6.2.4",
+    "events": "^1.1.1",
+    "flux": "^2.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",
