@@ -1,5 +1,7 @@
-import TweetBox from "./TweetBox.jsx"
-import TweetsList from "./TweetsList.jsx"
+import React from 'react';
+import { Link } from 'react-router';
+import TweetBox from './TweetBox.jsx';
+import TweetsList from './TweetsList.jsx';
 
 // the view part of the flux flow (testing)
 import TweetStore from '../stores/TweetStore.jsx';
@@ -64,6 +66,7 @@ export default class Index extends React.Component {
 	render() {
 		return (
 			<div className="containter">
+			  <Link to='/follow'> Who to follow </Link>
 			  <TweetBox />
 			  <TweetsList tweets={this.state.tweetsList}/>
 			</div>
