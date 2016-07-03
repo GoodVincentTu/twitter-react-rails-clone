@@ -64,7 +64,8 @@ class Main extends React.Component {
 	render() {
 		return (
 			<div className="containter">
-			  <TweetBox sendTweet={this.addTweet.bind(this)}/>
+			  // <TweetBox sendTweet={this.addTweet.bind(this)}/>
+			  <TweetBox />
 			  <TweetsList tweets={this.state.tweetsList}/>
 			</div>
 		);

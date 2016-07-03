@@ -63,7 +63,7 @@
 	
 	var _TweetStore2 = _interopRequireDefault(_TweetStore);
 	
-	var _TweetActions = __webpack_require__(/*! ./actions/TweetActions.jsx */ 4);
+	var _TweetActions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./actions/TweetActions.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	var _TweetActions2 = _interopRequireDefault(_TweetActions);
 	
@@ -157,7 +157,9 @@
 				return React.createElement(
 					"div",
 					{ className: "containter" },
+					"// ",
 					React.createElement(_TweetBox2.default, { sendTweet: this.addTweet.bind(this) }),
+					React.createElement(_TweetBox2.default, null),
 					React.createElement(_TweetsList2.default, { tweets: this.state.tweetsList })
 				);
 			}
@@ -180,15 +182,21 @@
 /*!*****************************************************!*\
   !*** ./app/assets/frontend/components/TweetBox.jsx ***!
   \*****************************************************/
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _TweetActions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../actions/TweetActions.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _TweetActions2 = _interopRequireDefault(_TweetActions);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -206,34 +214,35 @@
 	  }
 	
 	  _createClass(TweetBox, [{
-	    key: "sendTweet",
+	    key: 'sendTweet',
 	    value: function sendTweet(event) {
 	      event.preventDefault();
-	      this.props.sendTweet(this.refs.tweetTextArea.value);
+	      // this.props.sendTweet(this.refs.tweetTextArea.value);
+	      _TweetActions2.default.sendTweet(this.refs.tweetTextArea.value);
 	      this.refs.tweetTextArea.value = '';
 	    }
 	  }, {
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      return React.createElement(
-	        "div",
-	        { className: "row" },
+	        'div',
+	        { className: 'row' },
 	        React.createElement(
-	          "form",
+	          'form',
 	          { onSubmit: this.sendTweet.bind(this) },
 	          React.createElement(
-	            "div",
-	            { className: "input-field" },
-	            React.createElement("textarea", { ref: "tweetTextArea", className: "materialize-textarea" }),
+	            'div',
+	            { className: 'input-field' },
+	            React.createElement('textarea', { ref: 'tweetTextArea', className: 'materialize-textarea' }),
 	            React.createElement(
-	              "label",
+	              'label',
 	              null,
-	              " What do you want to share?"
+	              ' What do you want to share?'
 	            ),
 	            React.createElement(
-	              "button",
-	              { type: "submit", className: "btn right" },
-	              " Tweet "
+	              'button',
+	              { type: 'submit', className: 'btn right' },
+	              ' Tweet '
 	            )
 	          )
 	        )
@@ -369,96 +378,9 @@
 	exports.default = Tweet;
 
 /***/ },
-/* 4 */
-/*!******************************************************!*\
-  !*** ./app/assets/frontend/actions/TweetActions.jsx ***!
-  \******************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _API = __webpack_require__(/*! ../API.jsx */ 5);
-	
-	var _API2 = _interopRequireDefault(_API);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-	  getAllTweets: function getAllTweets() {
-	    console.log(1, 'TweetActions');
-	    _API2.default.getAllTweets();
-	  }
-	};
-
-/***/ },
-/* 5 */
-/*!*************************************!*\
-  !*** ./app/assets/frontend/API.jsx ***!
-  \*************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _ServerActions = __webpack_require__(/*! ./actions/ServerActions.jsx */ 6);
-	
-	var _ServerActions2 = _interopRequireDefault(_ServerActions);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-	  getAllTweets: function getAllTweets() {
-	    console.log(2, 'API.getAllTweets');
-	    $.get("/tweets").success(function (rawTweets) {
-	      return _ServerActions2.default.receivedTweets(rawTweets);
-	    }).error(function (error) {
-	      return console.log(error);
-	    });
-	  }
-	};
-
-/***/ },
-/* 6 */
-/*!*******************************************************!*\
-  !*** ./app/assets/frontend/actions/ServerActions.jsx ***!
-  \*******************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _dispatcher = __webpack_require__(/*! ../dispatcher.jsx */ 7);
-	
-	var _dispatcher2 = _interopRequireDefault(_dispatcher);
-	
-	var _constants = __webpack_require__(/*! ../constants.jsx */ 12);
-	
-	var _constants2 = _interopRequireDefault(_constants);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-	  receivedTweets: function receivedTweets(rawTweets) {
-	    console.log(3, 'ServerActions.receivedTweets');
-	    // AppDispatcher ...
-	    _dispatcher2.default.dispatch({
-	      actionType: _constants2.default.RECEIVED_TWEETS,
-	      rawTweets: rawTweets
-	    });
-	  }
-	};
-
-/***/ },
+/* 4 */,
+/* 5 */,
+/* 6 */,
 /* 7 */
 /*!********************************************!*\
   !*** ./app/assets/frontend/dispatcher.jsx ***!
@@ -937,7 +859,8 @@
 		value: true
 	});
 	exports.default = {
-		RECEIVED_TWEETS: 'RECEIVED_TWEETS'
+		RECEIVED_TWEETS: 'RECEIVED_TWEETS',
+		RECEIVED_ONE_TWEET: 'RECEIVED_ONE_TWEET'
 	};
 
 /***/ },
@@ -950,7 +873,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -979,57 +902,61 @@
 	var CHANGE_EVENT = "CHANGE";
 	
 	var TweetEventEmitter = function (_EventEmitter) {
-	  _inherits(TweetEventEmitter, _EventEmitter);
+		_inherits(TweetEventEmitter, _EventEmitter);
 	
-	  function TweetEventEmitter() {
-	    _classCallCheck(this, TweetEventEmitter);
+		function TweetEventEmitter() {
+			_classCallCheck(this, TweetEventEmitter);
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(TweetEventEmitter).apply(this, arguments));
-	  }
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(TweetEventEmitter).apply(this, arguments));
+		}
 	
-	  _createClass(TweetEventEmitter, [{
-	    key: 'getAll',
-	    value: function getAll() {
-	      return _tweets.map(function (tweet) {
-	        tweet.formattedDate = moment(tweet.created_at).fromNow();
-	        return tweet;
-	      });
-	    }
-	  }, {
-	    key: 'emitChange',
-	    value: function emitChange() {
-	      this.emit(CHANGE_EVENT);
-	    }
-	  }, {
-	    key: 'addChangeListner',
-	    value: function addChangeListner(callback) {
-	      this.on(CHANGE_EVENT, callback);
-	    }
-	  }, {
-	    key: 'removeChangeListner',
-	    value: function removeChangeListner(callback) {
-	      this.on(CHANGE_EVENT, callback);
-	    }
-	  }]);
+		_createClass(TweetEventEmitter, [{
+			key: 'getAll',
+			value: function getAll() {
+				return _tweets.map(function (tweet) {
+					tweet.formattedDate = moment(tweet.created_at).fromNow();
+					return tweet;
+				});
+			}
+		}, {
+			key: 'emitChange',
+			value: function emitChange() {
+				this.emit(CHANGE_EVENT);
+			}
+		}, {
+			key: 'addChangeListner',
+			value: function addChangeListner(callback) {
+				this.on(CHANGE_EVENT, callback);
+			}
+		}, {
+			key: 'removeChangeListner',
+			value: function removeChangeListner(callback) {
+				this.on(CHANGE_EVENT, callback);
+			}
+		}]);
 	
-	  return TweetEventEmitter;
+		return TweetEventEmitter;
 	}(_events.EventEmitter);
 	
 	var TweetStore = new TweetEventEmitter();
 	
 	_dispatcher2.default.register(function (action) {
-	  // action.actionType == 'RECEIVED_TWEETS'
-	  switch (action.actionType) {
-	    case _constants2.default.RECEIVED_TWEETS:
-	      console.log(4, 'TweetStore');
-	      // acknowledge tweets
-	      _tweets = action.rawTweets;
-	      // emit a change event
-	      TweetStore.emitChange();
-	      break;
-	    default:
-	    // no op
-	  }
+		// action.actionType == 'RECEIVED_TWEETS'
+		switch (action.actionType) {
+			case _constants2.default.RECEIVED_TWEETS:
+				console.log(4, 'TweetStore');
+				// acknowledge tweets
+				_tweets = action.rawTweets;
+				// emit a change event
+				TweetStore.emitChange();
+				break;
+			case _constants2.default.RECEIVED_ONE_TWEET:
+				_tweets.unshift(action.rawTweet);
+				TweetStore.emitChange();
+				break;
+			default:
+			// no op
+		}
 	});
 	
 	exports.default = TweetStore;
