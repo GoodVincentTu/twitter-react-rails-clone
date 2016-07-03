@@ -1,26 +1,15 @@
 import AppDispatcher from '../dispatcher.jsx'
 import ActionTypes from '../constants.jsx';
-// npm event module
-import { EventEmitter } from 'events';
+import AppEventEmitter from './AppEventEmitter.jsx'
 
 let _tweets = [];
-const CHANGE_EVENT = "CHANGE"
 
-class TweetEventEmitter extends EventEmitter {
+class TweetEventEmitter extends AppEventEmitter {
   getAll(){
   	return _tweets.map(tweet => {
 			tweet.formattedDate = moment(tweet.created_at).fromNow();
       return tweet;
    	});
-  }
-  emitChange(){
-  	this.emit(CHANGE_EVENT);
-  }
-  addChangeListner(callback){
-  	this.on(CHANGE_EVENT, callback);
-  }
-  removeChangeListner(callback){
-  	this.on(CHANGE_EVENT, callback);
   }
 }
 
