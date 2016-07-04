@@ -6,7 +6,7 @@ import TweetsList from './TweetsList.jsx';
 // the view part of the flux flow (testing)
 import TweetStore from '../stores/TweetStore.jsx';
 import TweetActions from '../actions/TweetActions.jsx';
-TweetActions.getAllTweets();
+// TweetActions.getAllTweets();
 
 let getAppState = () => {
 	return { tweetsList: TweetStore.getAll() };
@@ -53,10 +53,12 @@ export default class Index extends React.Component {
     // .success(data => this.setState(this.formattedTweets(data)))
     // .error(error => console.log(error));
 
+    TweetActions.getAllTweets();
     // listen to the change
     TweetStore.addChangeListner(this._onChange);
   }
   componentWillUnmount() {
+
     TweetStore.removeChangeListner(this._onChange);
   }
   _onChange(){

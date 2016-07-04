@@ -21588,7 +21588,7 @@
 	// the view part of the flux flow (testing)
 	
 	
-	_TweetActions2.default.getAllTweets();
+	// TweetActions.getAllTweets();
 	
 	var getAppState = function getAppState() {
 		return { tweetsList: _TweetStore2.default.getAll() };
@@ -21647,12 +21647,14 @@
 				// .success(data => this.setState(this.formattedTweets(data)))
 				// .error(error => console.log(error));
 	
+				_TweetActions2.default.getAllTweets();
 				// listen to the change
 				_TweetStore2.default.addChangeListner(this._onChange);
 			}
 		}, {
 			key: 'componentWillUnmount',
 			value: function componentWillUnmount() {
+	
 				_TweetStore2.default.removeChangeListner(this._onChange);
 			}
 		}, {
@@ -28655,12 +28657,6 @@
 	    key: 'followClasses',
 	    value: function followClasses(following) {
 	      return "secondary-content btn-floating " + (following ? "green" : "grey");
-	      // if (following) {
-	      //  return "secondary-content btn-floating green";
-	      // }
-	      // else{
-	      //  return "secondary-content btn-floating grey";
-	      // }
 	    }
 	  }, {
 	    key: 'render',
